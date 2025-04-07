@@ -1,0 +1,53 @@
+<legend>Chat</legend>
+<div class='row' data-controller="chat">
+  <div class='col-sm-5'>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">New Message</h3>
+      </div>
+      <div class="panel-body">
+        <%= simple_form_for Message.new, html: { class: 'form-horizontal' }, remote: true do |f| %>
+          <div class='form-group'>
+            <%= f.label :user, class: 'col-xs-3' %>
+            <div class='col-xs-9'>
+              <%= f.input_field :user, placeholder: 'Enter Username', class: 'form-control', data: { chat_target: "user" } %>
+            </div>
+          </div>
+          <div class='form-group'>
+            <%= f.label :content, label: 'Message', class: 'col-xs-3' %>
+            <div class='col-xs-9'>
+              <%= f.input_field :content, placeholder: 'Enter Message', class: 'form-control', data: { chat_target: "content" } %>
+            </div>
+          </div>
+          <%= f.submit 'Create Message', class: 'btn btn-block btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class='col-sm-7'>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Messages</h3>
+      </div>
+      <!-- <div data-controller="chat"> 원래 이렇게 scope를 짧게 유지하는 게 맞지 않나? -->
+      <div>
+        <div data-chat-target="messages" class='list-group messages'>
+          <%#= render partial: "message", collection: @messages.reverse%>
+          <%= render @messages.reverse %>
+
+          <!-- 왜 이렇게 하면 아예 반영이 안 되는거야??? -->
+          <%# if !@messages.blank? %>
+            <%# for message in @messages.reverse %>
+              <%#= render partial: "message", locals: { message: message } %>
+            <%# end %>
+          <%# end %>
+
+        </div>
+
+      </div>
+
+
+    </div>
+    
+  </div>
+</div>
