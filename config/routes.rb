@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   resources :messages, only: [:create]
   get :chat, to: 'visitors#chat'
   root 'visitors#chat'
+  get :vote, to: 'visitors#vote'
 
 end
