@@ -1,9 +1,14 @@
 class MessagesController < ApplicationController
   # before_action :set_message, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
+  after_action :verify_authorized
 
   def create
-    message = Message.create(params[:message].permit!)
-    head :ok
+    # message = Message.create(params[:message].permit!)
+    message = current_user.messages.new(params[:message].permit!)
+    authorize message # pundit에서 사용하는 건데 좀 더 알아볼 필요 있음!
+    # head :ok
+    message.save
   end
 
   # # GET /messages or /messages.json

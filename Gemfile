@@ -64,3 +64,8 @@ group :development do
 end
 
 gem "simple_form"
+
+gem "devise", "~> 4.9"
+
+gem "pundit", "~> 2.5"
+gem "rails_db"

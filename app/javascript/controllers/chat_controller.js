@@ -3,7 +3,8 @@ import consumer from "channels/consumer"
 
 // Connects to data-controller="chat"
 export default class extends Controller {
-  static targets = ["user", "content", "messages"]
+  // static targets = ["user", "content", "messages"]
+  static targets = ["content", "messages"]
 
   connect() {
     console.log("connect!")
@@ -36,7 +37,7 @@ export default class extends Controller {
     // 문제는 이 과정에서 HTML이 파싱되지 않고 그대로 코드를 출력해버린다는 거!
     this.messagesTarget.insertAdjacentHTML('afterBegin', data.message)
     
-    this.userTarget.value = ""
+    // this.userTarget.value = ""
     this.contentTarget.value = ""
   }
 }
